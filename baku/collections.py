@@ -34,6 +34,6 @@ def findOne(name, params):
   data = search(name, params)
   
   if not data:
-      raise Exception(f"data not found for event {event}")
+      raise Exception(f"data not found for collection {name}")
 
   return data[0]
