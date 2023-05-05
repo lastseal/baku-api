@@ -3,6 +3,7 @@
 import requests
 import logging
 import json
+import jwt
 import os
 
 COLLECTION_HOST = os.getenv("COLLECTION_HOST")
