@@ -1,9 +1,9 @@
 from setuptools import setup
 
 setup(
-    name="baku-mailgun",
+    name="baku-collections",
     version="1.0.0",
-    description="Módulo que permite enviar correos por mailgun",
+    description="Módulo que permite realizar consultas a colecciones",
     author="Rodrigo Arriaza",
     author_email="hello@lastseal.com",
     url="https://www.lastseal.com",
