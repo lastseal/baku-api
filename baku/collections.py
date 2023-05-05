@@ -7,6 +7,7 @@ import jwt
 import os
 
 COLLECTION_HOST = os.getenv("COLLECTION_HOST")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 ##
 #
