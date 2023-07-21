@@ -31,6 +31,10 @@ class Document:
     @property
     def created_at(self):
         return self.__dict__['created_at']
+    
+    @property
+    def updated_at(self):
+        return self.__dict__['updated_at']
 
     def save(self):
         return self.session.save(self.id, self.data)
@@ -41,12 +45,11 @@ class Document:
 ##
 #
 
-class Collection(requests.Session):
+class Session(requests.Session):
    
-    def __init__(self, name):
+    def __init__(self, url):
         super().__init__()
-        self.name = name
-        self.url = f"{BASE_URL}/api/collections/{name}"
+        self.url = url
         self.headers.update({"Authorization": f"Bearer {TOKEN}"})
 
     def findAll(self, criteria=None, order=None, created_at_min=None, created_at_max=None):
@@ -114,3 +117,19 @@ class Collection(requests.Session):
             raise Exception(f"{res.status_code}: {res.text}")
 
         return res.json()
+
+##
+#
+
+class Collection(Session):
+   
+    def __init__(self, name):
+        super().__init__(f"{BASE_URL}/api/collections/{name}")
+
+##
+#
+
+class User(Session):
+   
+    def __init__(self, name):
+        super().__init__(f"{BASE_URL}/api/collections/{name}")
