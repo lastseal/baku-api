@@ -1,9 +1,9 @@
 from setuptools import setup
 
 setup(
-    name="baku-collections",
+    name="baku-api",
     version="1.0.0",
-    description="Módulo que permite realizar consultas a colecciones",
+    description="Módulo que permite realizar consultas a los servicios REST/API",
     author="Rodrigo Arriaza",
     author_email="hello@lastseal.com",
     url="https://www.lastseal.com",
