@@ -20,15 +20,17 @@ TOKEN = jwt.encode({
 class Document:
 
     def __init__(self, data, session):
-        self.data = data
-        self.id = data['id']
+        for key in data:
+            self.__dict__[key] = data[key]
         self.session = session
 
-    def __setattr__(self, name, value):
-        self.__dict__[name] = value
-
-    def __getattr__(self, name):
-        self.__dict__[name]
+    @property
+    def id(self):
+        return self.__dict__['id']
+    
+    @property
+    def created_at(self):
+        return self.__dict__['created_at']
 
     def save(self):
         return self.session.save(self.id, self.data)
@@ -42,6 +44,7 @@ class Document:
 class Collection(requests.Session):
    
     def __init__(self, name):
+        super().__init__()
         self.name = name
         self.url = f"{BASE_URL}/api/collections/{name}"
         self.headers.update({"Authorization": f"Bearer {TOKEN}"})
@@ -65,6 +68,8 @@ class Collection(requests.Session):
 
         if res.status_code >= 400:
             raise Exception(f"{res.status_code}: {res.text}")
+        
+        logging.debug("data: %s", res.json())
 
         return [Document(x, self) for x in res.json()]
     
