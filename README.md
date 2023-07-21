@@ -4,5 +4,5 @@
 ## Instalación
 
 ```bash
-pip install git+https://github.com/lastseal/baku-collections
+pip install git+https://github.com/lastseal/baku-api
 ```
