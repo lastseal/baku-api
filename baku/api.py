@@ -140,7 +140,7 @@ class Session(requests.Session):
         if res.status_code >= 400:
             raise Exception(f"{res.status_code}: {res.text}")
 
-        return res.json()
+        return res.text
 
 ##
 #
