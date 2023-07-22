@@ -52,6 +52,30 @@ class Session(requests.Session):
         self.url = url
         self.headers.update({"Authorization": f"Bearer {TOKEN}"})
 
+    def count(self, criteria=None, order=None, created_at_min=None, created_at_max=None):
+
+        params = {}
+
+        if criteria is not None:
+            params['criteria'] = json.dumps(criteria)
+
+        if created_at_min is not None:
+            params['created_at_min'] = created_at_min
+
+        if created_at_max is not None:
+            params['created_at_max'] = created_at_max
+
+        logging.debug("counting in %s with %s", self.url, params)
+       
+        res = self.get(f"{self.url}/count", params=params)
+
+        if res.status_code >= 400:
+            raise Exception(f"{res.status_code}: {res.text}")
+        
+        logging.debug("res: %s", res.json())
+
+        return res.json()["count"]
+        
     def findAll(self, criteria=None, order=None, created_at_min=None, created_at_max=None):
 
         params = {}
@@ -72,7 +96,7 @@ class Session(requests.Session):
         if res.status_code >= 400:
             raise Exception(f"{res.status_code}: {res.text}")
         
-        logging.debug("data: %s", res.json())
+        logging.debug("res: %s", res.json())
 
         return [Document(x, self) for x in res.json()]
     
