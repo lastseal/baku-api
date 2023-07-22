@@ -42,6 +42,9 @@ class Document:
     def remove(self):
         return self.session.remove(self.id)
 
+    def to_dict(self):
+        return self.__dict__
+
 ##
 #
 
