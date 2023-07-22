@@ -129,7 +129,7 @@ class Collection(Session):
 ##
 #
 
-class Requests(Session):
+class Request(Session):
    
     def __init__(self, uri):
         super().__init__(f"{BASE_URL}/{uri}")
