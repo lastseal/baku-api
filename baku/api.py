@@ -10,7 +10,7 @@ BASE_URL = os.getenv("BASE_URL")
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 TOKEN = jwt.encode({
-    "scopes": [{"pattern": f".*/api/collections"}], 
+    "scopes": [{"pattern": f".*/api/.*"}], 
     "userkey": "0"
 }, SECRET_KEY, algorithm="HS256")
 
