@@ -9,9 +9,7 @@ pip install git+https://github.com/lastseal/baku-api
 
 ## Ejemplos
 
-Lectura de documentos de una colecci처n. En el ejemplo, el nombre de la colecci처n es ```pruebas``` y la estrucuta del documento JSON es el siguiente:
-
-
+Lectura de registros de una colecci처n. En el ejemplo, el nombre de la colecci처n es ```pruebas``` y la estrucuta del registro JSON es el siguiente:
 
 ```json
 {
@@ -23,6 +21,8 @@ Lectura de documentos de una colecci처n. En el ejemplo, el nombre de la colecci�
     }
 }
 ```
+
+Se busca la prueba de nombre ```test-1``` con la variable ```name``` del registro.
 
 ```python
 from baku import api
