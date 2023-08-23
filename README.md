@@ -6,3 +6,31 @@
 ```bash
 pip install git+https://github.com/lastseal/baku-api
 ```
+
+## Ejemplos
+
+Lectura de documentos de una colección. En el ejemplo, el nombre de la colección es ```pruebas``` y la estrucuta del documento JSON es el siguiente:
+
+
+
+```json
+{
+    "name": "nombre de la prueba",
+    "list": ["data1", "data2"],
+    "object": {
+        "flag": true,
+        "channel": "test"
+    }
+}
+```
+
+```python
+from baku import api
+
+pruebas = api.Collection("pruebas")
+
+data = prueba.findOne({"name": "test-1"})
+print("name:", data.name)
+print("list.0:", data.list[0])
+print("object.flag:", data.object['flag'])
+```

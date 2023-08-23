@@ -125,11 +125,3 @@ class Collection(Session):
    
     def __init__(self, name):
         super().__init__(f"{BASE_URL}/api/collections/{name}")
-
-##
-#
-
-class User(Session):
-   
-    def __init__(self, name):
-        super().__init__(f"{BASE_URL}/api/collections/{name}")
