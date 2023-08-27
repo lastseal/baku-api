@@ -9,11 +9,6 @@ import os
 BASE_URL = os.getenv("BASE_URL")
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-TOKEN = jwt.encode({
-    "scopes": [{"pattern": f".*/api/.*"}], 
-    "userkey": "0"
-}, SECRET_KEY, algorithm="HS256")
-
 ##
 #
 
@@ -50,10 +45,16 @@ class Record:
 
 class Session(requests.Session):
    
-    def __init__(self, url):
+    def __init__(self, endpoint):
         super().__init__()
-        self.url = url
-        self.headers.update({"Authorization": f"Bearer {TOKEN}"})
+        
+        token = jwt.encode({
+            "scopes": [{"pattern": f".*{endpoint}.*"}], 
+            "userkey": "0"
+        }, SECRET_KEY, algorithm="HS256")
+
+        self.url = f"{BASE_URL}/{endpoint}"
+        self.headers.update({"Authorization": f"Bearer {token}"})
 
     def count(self, criteria=None, order=None, created_at_min=None, created_at_max=None):
 
@@ -154,4 +155,4 @@ class Session(requests.Session):
 class Collection(Session):
    
     def __init__(self, name):
-        super().__init__(f"{BASE_URL}/api/collections/{name}")
+        super().__init__(f"/api/collections/{name}")
