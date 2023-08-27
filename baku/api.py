@@ -115,8 +115,11 @@ class Session(requests.Session):
     def create(self, data):
 
         logging.debug("creating in %s with %s", self.url, data)
-       
-        res = self.post(self.url, json=data)
+
+        if isinstance(data, list):
+            res = self.post(f"{self.url}/bulk", json=data)
+        else:
+            res = self.post(self.url, json=data)
 
         if res.status_code >= 400:
             raise Exception(f"{res.status_code}: {res.text}")
