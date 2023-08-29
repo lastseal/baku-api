@@ -155,4 +155,4 @@ class Session(requests.Session):
 class Collection(Session):
    
     def __init__(self, name):
-        super().__init__(f"/api/collections/{name}")
+        super().__init__(f"api/collections/{name}")
