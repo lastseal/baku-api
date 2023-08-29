@@ -19,6 +19,9 @@ class Record:
             self.__dict__[key] = data[key]
         self.session = session
 
+    def __eq__(self, key):
+        return key in self.__dict__
+        
     @property
     def id(self):
         return self.__dict__['id']
