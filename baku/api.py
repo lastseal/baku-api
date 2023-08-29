@@ -19,7 +19,7 @@ class Record:
             self.__dict__[key] = data[key]
         self.session = session
 
-    def __eq__(self, key):
+    def __contains__(self, key):
         return key in self.__dict__
         
     @property
