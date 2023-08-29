@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="baku-api",
-    version="1.0.1",
+    version="1.0.2",
     description="Módulo que permite realizar consultas a los servicios REST/API",
     author="Rodrigo Arriaza",
     author_email="hello@lastseal.com",
