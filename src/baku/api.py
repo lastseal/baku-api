@@ -99,15 +99,17 @@ class HttpServer(Application):
                     headers = request.headers
                     logging.debug("headers: %s", dict(headers))
                     
-                    # Solo obtener token del header Authorization (eliminar query params)
+                    token = None
                     if 'Authorization' in headers:
                         data = headers['Authorization'].split(' ')
                         logging.debug("Authorization: %s", data)
 
                         if len(data) != 2 or data[0] != "Bearer":
                             raise Exception({"message": "forbidden, error authorization", "status": 403})
-                        
+
                         token = data[1]
+                    elif request.args.get('token'):
+                        token = request.args.get('token')
                     else:
                         raise Exception({"message": "forbidden, error headers", "status": 403})
 
