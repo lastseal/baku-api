@@ -66,9 +66,6 @@ class HttpServer(Application):
         if hasattr(handle_api, '__scope__'):
             scope = handle_api.__scope__
         
-        # Si la función tiene __require_auth__ definido, usar ese para controlar auth
-        require_auth = getattr(handle_api, '__require_auth__', None)
-        
         logging.debug("config route %s %s", method, endpoint)
             
         def handle(**params):
@@ -79,6 +76,8 @@ class HttpServer(Application):
                     
                 token = None
                 user = {}
+
+                require_auth = getattr(handle_api, '__require_auth__', None)
 
                 # Determinar si se requiere autenticación
                 # Si require_auth es False explícitamente, no validar
